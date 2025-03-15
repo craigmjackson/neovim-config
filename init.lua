@@ -25,7 +25,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.termguicolors = true
 vim.opt.winblend = 30
-vim.lsp.set_log_level 'TRACE'
+-- vim.lsp.set_log_level 'TRACE'
+vim.g.navic_silence = true
 
 -- Keymaps
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -202,8 +203,6 @@ require('lazy').setup({
           map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-          -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
           ---@param bufnr? integer some lsp support methods only in specific files
@@ -272,8 +271,9 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
       local servers = {
-        -- pyright = {},
-        -- ts_ls = {},
+        pyright = {},
+        bashls = {},
+        jsonls = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -283,6 +283,7 @@ require('lazy').setup({
             },
           },
         },
+        phpactor = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
@@ -308,7 +309,6 @@ require('lazy').setup({
           },
         },
       }
-
       lspconfig.ts_ls.setup {
         init_options = {
           plugins = {
@@ -471,7 +471,24 @@ require('lazy').setup({
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
     opts = {
-      ensure_installed = { 'javascript', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'javascript',
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'css',
+        'yaml',
+        'json',
+        'dockerfile',
+      },
       auto_install = true,
       highlight = {
         enable = true,
