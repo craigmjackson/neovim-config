@@ -636,6 +636,11 @@ require('lazy').setup({
         options = {
           numbers = 'ordinal',
           separator_style = 'slant',
+          buffer_close_icon = vim.g.have_nerd_font and '' or 'x',
+          close_icon = vim.g.have_nerd_font and '' or 'x',
+          modified_icon = vim.g.have_nerd_font and '' or 'm',
+          left_trunc_marker = vim.g.have_nerd_font and '' or '/',
+          right_trunc_marker = vim.g.have_nerd_font and '' or '\\',
         },
       }
       -- Goto buffer number with <Space> b #<Enter>
@@ -659,6 +664,45 @@ require('lazy').setup({
       require('nvim-tree').setup {
         disable_netrw = true,
         hijack_netrw = true,
+        renderer = {
+          icons = {
+            web_devicons = {
+              file = {
+                enable = vim.g.have_nerd_font,
+                color = true,
+              },
+              folder = {
+                enable = vim.g.have_nerd_font,
+                color = true,
+              },
+            },
+            glyphs = {
+              default = '',
+              symlink = '',
+              bookmark = '',
+              modified = 'm',
+              hidden = '',
+              folder = {
+                arrow_closed = '>',
+                arrow_open = 'v',
+                default = 'd',
+                open = 'd',
+                empty = 'd',
+                empty_open = 'd',
+                symlink = 'ds',
+                symlink_open = 'ds',
+              },
+              git = {
+                unstaged = '',
+                staged = 's',
+                unmerged = '',
+                untracked = '',
+                deleted = 'd',
+                ignored = '',
+              },
+            },
+          },
+        },
         filters = {
           git_ignored = false,
         },
