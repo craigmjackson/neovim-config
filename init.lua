@@ -363,7 +363,6 @@ require('lazy').setup({
             },
           },
         },
-        phpactor = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
@@ -596,6 +595,7 @@ require('lazy').setup({
         'json',
         'dockerfile',
         'python',
+        'php',
       },
       -- Install more treesitter configs as needed when new filetypes are opened
       auto_install = true,
