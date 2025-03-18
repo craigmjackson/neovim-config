@@ -394,12 +394,13 @@ require('lazy').setup({
           },
         },
       }
+      -- Need to add @vue/language-server, typescript, and @vue/typescript-plugin to local project
       lspconfig.ts_ls.setup {
         init_options = {
           plugins = {
             {
               name = '@vue/typescript-plugin',
-              location = '/usr/local/lib/node_modules/@vue/typescript-plugin',
+              location = './node_modules/@vue/typescript-plugin',
               languages = { 'vue' },
             },
           },
@@ -594,6 +595,7 @@ require('lazy').setup({
         'yaml',
         'json',
         'dockerfile',
+        'python',
       },
       -- Install more treesitter configs as needed when new filetypes are opened
       auto_install = true,
@@ -676,7 +678,7 @@ require('lazy').setup({
                 color = true,
               },
             },
-            glyphs = {
+            glyphs = vim.g.have_nerd_font and {} or {
               default = '',
               symlink = '',
               bookmark = '',
