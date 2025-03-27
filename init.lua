@@ -236,8 +236,6 @@ require('lazy').setup({
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      -- Get more status updates for LSPs
-      { 'j-hui/fidget.nvim', opts = {} },
       -- Enable cmp to handle completions for some LSP servers
       'hrsh7th/cmp-nvim-lsp',
     },
@@ -483,16 +481,23 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp-signature-help',
+      'onsails/lspkind.nvim',
     },
     config = function()
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
       luasnip.config.setup {}
       cmp.setup {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
+        },
+        formatting = {
+          format = lspkind.cmp_format {
+            mode = 'symbol_text',
+          },
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
         mapping = cmp.mapping.preset.insert {
@@ -538,17 +543,10 @@ require('lazy').setup({
     end,
   },
   {
-    -- Set the colorscheme
-    'folke/tokyonight.nvim',
-    priority = 1000,
+    'askfiy/visual_studio_code',
+    priority = 100,
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false },
-        },
-      }
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd [[colorscheme visual_studio_code]]
     end,
   },
   -- Highlight TODOs in comments
