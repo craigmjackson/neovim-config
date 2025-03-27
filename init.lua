@@ -718,6 +718,16 @@ require('lazy').setup({
       vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree ' })
     end,
   },
+  {
+    'petertriho/nvim-scrollbar',
+    config = function()
+      require('scrollbar').setup {
+        handlers = {
+          gitsigns = true,
+        },
+      }
+    end,
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
