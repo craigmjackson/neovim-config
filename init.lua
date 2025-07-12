@@ -746,6 +746,17 @@ require('lazy').setup({
       }
     end,
   },
+  {
+    -- Zen mode for focused coding
+    'folke/zen-mode.nvim',
+    config = function()
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          vim.keymap.set('n', '<leader>z', ':ZenMode<CR>', { desc = '[Z]en Mode' })
+        end,
+      })
+    end,
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
