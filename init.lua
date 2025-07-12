@@ -744,6 +744,7 @@ require('lazy').setup({
     end,
   },
   {
+    -- Enable outline nagivation
     'hedyhli/outline.nvim',
     config = function()
       vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = 'Tiggle [O]utline' })
@@ -751,6 +752,7 @@ require('lazy').setup({
     end,
   },
   {
+    -- Draw lines down and to the side so diag messages can be actually seen on the screen
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     config = function()
       require('lsp_lines').setup()
@@ -760,6 +762,10 @@ require('lazy').setup({
         virtual_lines = true,
       }
     end,
+  },
+  {
+    -- Relative numbers on in normal mode, off in insert mode
+    'sitiom/nvim-numbertoggle',
   },
 }, {
   ui = {
