@@ -767,6 +767,21 @@ require('lazy').setup({
     -- Relative numbers on in normal mode, off in insert mode
     'sitiom/nvim-numbertoggle',
   },
+  {
+    -- Show whitespace character in visual selection
+    'mcauley-penney/visual-whitespace.nvim',
+    config = true,
+    event = 'ModeChanged *:[vV\22]',
+    opts = {
+      match_types = {
+        space = true,
+        tab = true,
+        nbsp = true,
+        lead = true,
+        trail = false,
+      },
+    },
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
