@@ -757,6 +757,13 @@ require('lazy').setup({
       })
     end,
   },
+  {
+    'hedyhli/outline.nvim',
+    config = function()
+      vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = 'Tiggle [O]utline' })
+      require('outline').setup()
+    end,
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
