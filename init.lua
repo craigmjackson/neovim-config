@@ -727,6 +727,25 @@ require('lazy').setup({
       }
     end,
   },
+  {
+    -- Render markdown.
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
+    opts = {},
+    config = function()
+      require('render-markdown').setup {
+        completions = { lsp = { enabled = true } },
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'markdown',
+          callback = function(opts)
+            if vim.bo[opts.buf].filetype == 'markdown' then
+              vim.cmd 'RenderMarkdown enable'
+            end
+          end,
+        }),
+      }
+    end,
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
