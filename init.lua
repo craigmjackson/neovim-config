@@ -326,20 +326,6 @@ require('lazy').setup({
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         } or {},
-        -- Configure virtual text for the inline diagnostic messages
-        virtual_text = {
-          source = 'if_many',
-          spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
-        },
       }
       -- Advertised the extra LSP client capabilities gained by new plugins
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -762,6 +748,17 @@ require('lazy').setup({
     config = function()
       vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = 'Tiggle [O]utline' })
       require('outline').setup()
+    end,
+  },
+  {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    config = function()
+      require('lsp_lines').setup()
+      require('lsp_lines').toggle()
+      vim.diagnostic.config {
+        virtual_text = false,
+        virtual_lines = true,
+      }
     end,
   },
 }, {
