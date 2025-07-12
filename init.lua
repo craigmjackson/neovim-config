@@ -19,7 +19,7 @@ vim.opt.showmode = false
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
--- Make sure indenting doesn't start at column 0 which is tough to read
+-- Make sure indenting doesn't start at column 0 which is tough to tgead
 vim.opt.breakindent = true
 -- Make undo files so undo can be done after Neovim is closed
 vim.opt.undofile = true
@@ -412,6 +412,11 @@ require('lazy').setup({
         },
       }
     end,
+  },
+  {
+    -- Show autocomplete signature as you type
+    'ray-x/lsp_signature.nvim',
+    event = 'InsertEnter',
   },
   { -- Autoformat
     'stevearc/conform.nvim',
