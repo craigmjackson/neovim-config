@@ -413,11 +413,6 @@ require('lazy').setup({
       }
     end,
   },
-  {
-    -- Show autocomplete signature as you type
-    'ray-x/lsp_signature.nvim',
-    event = 'InsertEnter',
-  },
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
