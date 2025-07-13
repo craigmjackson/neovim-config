@@ -782,6 +782,17 @@ require('lazy').setup({
       },
     },
   },
+  {
+    -- Take a scrreenshot of the screen or the selection with ":Freeze"
+    'AlejandroSuero/freeze-code.nvim',
+    config = function()
+      require('freeze-code').setup()
+    end,
+    opts = {
+      copy = true,
+      open = true,
+    },
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
