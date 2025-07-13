@@ -793,6 +793,30 @@ require('lazy').setup({
       open = true,
     },
   },
+  {
+    -- Get undo history
+    'debugloop/telescope-undo.nvim',
+    dependencies = {
+      {
+        'nvim-telescope/telescope.nvim',
+        dependencies = {
+          'nvim-lua/plenary.nvim',
+        },
+      },
+    },
+    config = function()
+      require('telescope').load_extension 'undo'
+      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<CR>', { desc = '[U]ndo history' })
+    end,
+  },
+  {
+    -- Generate function annotation
+    'danymat/neogen',
+    config = function()
+      require('neogen').setup()
+      vim.keymap.set('n', '<leader>g', '<cmd>Neogen<cr>', { desc = '[G]enerate function annotation' })
+    end,
+  },
 }, {
   ui = {
     -- Define icons if you have a nerd font
