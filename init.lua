@@ -365,13 +365,12 @@ require('lazy').setup({
             local server = servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             -- Run the setup for any of the defined servers
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.enable[server_name].setup(server)
           end,
         },
       }
       -- Setup special config to support Vue files which contain both HTML and JavaScript
-      local lspconfig = require 'lspconfig'
-      lspconfig.volar.setup {
+      vim.lsp.config.volar = {
         init_options = {
           vue = {
             hybridMode = false,
@@ -379,7 +378,7 @@ require('lazy').setup({
         },
       }
       -- Need to add @vue/language-server, typescript, and @vue/typescript-plugin to local project
-      lspconfig.ts_ls.setup {
+      vim.lsp.config.ts_ls = {
         init_options = {
           plugins = {
             {
@@ -780,17 +779,6 @@ require('lazy').setup({
         lead = true,
         trail = false,
       },
-    },
-  },
-  {
-    -- Take a scrreenshot of the screen or the selection with ":Freeze"
-    'AlejandroSuero/freeze-code.nvim',
-    config = function()
-      require('freeze-code').setup()
-    end,
-    opts = {
-      copy = true,
-      open = true,
     },
   },
   {
